@@ -32,7 +32,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="index"><b><font size="5" color = "White"><img class="logosis" src="{{ url_for('static',filename='images/Logo.png')}}">Multipass</font></b></a>
+              <a method="post" class="navbar-brand" href="../home"><b><font size="5" color = "White"><img class="logosis" src="{{ url_for('static',filename='images/Logo.png')}}">Multipass</font></b></a>
             </div>
 
             </div><!--/.navbar-collapse -->
@@ -41,13 +41,14 @@
 
     <div class="container">
       <div class="col-md-8 col-md-offset-3">
-      <h2 <b> <font color = "Green">Continue o cadastro!</h2></font>
-      <h4>&nbspÉ rápido e fácil !</h4>
+      <h2 <b> <font color = "Green">Atualize seu cadastro!</h2></font>
+      <h4>Edite apenas o campo que quer alterar e digite sua senha para verificação!</h4>
 
       <form action = "" method="post">
 
       <div class = "form-group">
             {{ form2.csrf_token }}
+
             {{form2.matricula(class="form-control",placeholder="Matricula")}}
             {%if form2.errors.matricula %}
             <span class="label label-danger">Matricula inválida</span>
@@ -132,14 +133,12 @@
                 <span class="label label-danger">Senha inválida</span>
             {%endif%}
          </div>
-         <button type="submit" class="btn btn-success">Cadastrar</button><!--<div class = "checkbox">-->
+         <button type="submit" class="btn btn-success">Atualizar</button><!--<div class = "checkbox">-->
     </div> <!-- /container -->
 
-    <!-- <footer>
-      <a href="#topo"><p class="pull-right">Voltar ao Topo</a></p>
-      <p>&copy; 2017 Ludus, Inc. &middot; <a href="#">Privacidade</a> &middot; <a href="#">Termos de Uso</a></p>
-    </footer> -->
-
+    <!-- {% block footer %}
+        <p>&copy; 2017 Ludus, Inc. &middot; <a href="#">Privacidade</a> &middot; <a href="#">Termos de Uso</a></p>
+    {% endblock %} -->
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 

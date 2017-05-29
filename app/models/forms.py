@@ -24,3 +24,15 @@ class Temp(FlaskForm):
     nome = StringField("Nome", validators = [DataRequired()])
     email = StringField("E-mail", validators = [DataRequired()])
     matricula = StringField("Matricula", validators = [DataRequired()])
+
+class Update(FlaskForm):
+    matricula = StringField("Matricula", validators = [DataRequired()])
+    nome = StringField("Nome", validators = [DataRequired()])
+    endereco = StringField("Endereco", validators = [DataRequired()])
+    bairro = StringField("Bairro", validators = [DataRequired()])
+    cidade = StringField("Cidade", validators = [DataRequired()])
+    UF = StringField("UF", validators = [DataRequired()])
+    CEP = StringField("CEP", validators = [DataRequired()])
+    email = StringField("E-mail", validators = [DataRequired()])
+    telefone = StringField("Telefone Fixo")
+    celular = StringField("Celular", validators = [DataRequired()])

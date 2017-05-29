@@ -45,4 +45,4 @@ class User(db.Model):
         self.alu_senha = alu_senha
 
     def __repr__(self):
-        return "<Aluno: %s>" % self.alu_nome
+        return "%s" % self.alu_nome

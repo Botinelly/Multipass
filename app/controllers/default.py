@@ -1,6 +1,6 @@
 from app import app, db,lm
 from flask import render_template, flash, redirect, url_for
-from app.models.forms import Login, Cadastro, Temp
+from app.models.forms import *
 from app.models.tables import User
 from flask_login import login_user, logout_user, login_required
 
@@ -48,10 +48,42 @@ def cadastro():
 def home():
     return render_template('home.html')
 
-@app.route("/profile")
+@app.route("/profile/<matricula>", methods=["GET", "POST"])
 @login_required
-def profile():
+def profile(matricula):
     form2 = Cadastro()
+    r = User.query.filter_by(alu_matricula = matricula).first()
+
+    form2.matricula.data = r.alu_matricula
+    form2.nome.data = r.alu_nome
+    form2.endereco.data = r.alu_endereco
+    form2.bairro.data = r.alu_bairro
+    form2.cidade.data = r.alu_cidade
+    form2.UF.data = r.alu_UF
+    form2.CEP.data = r.alu_CEP
+    form2.email.data = r.alu_email
+    form2.telefone.data = r.alu_telefone
+    form2.celular.data = r.alu_celular
+    form2.senha.data = r.alu_senha
+
+    if form2.matricula.data != "" and form2.nome.data != "" and form2.endereco.data != "" and form2.bairro.data != "" and form2.cidade.data != "" and form2.UF.data != "" and form2.CEP.data != "" and form2.email.data != "" and form2.telefone.data != "" and form2.celular.data != "" and form2.validate_on_submit():
+        form2 = Cadastro()
+        r.alu_matricula = form2.matricula.data
+        r.alu_nome = form2.nome.data
+        r.alu_endereco = form2.endereco.data
+        r.alu_bairro = form2.bairro.data
+        r.alu_cidade = form2.cidade.data
+        r.alu_UF = form2.UF.data
+        r.alu_CEP = form2.CEP.data
+        r.alu_email = form2.email.data
+        r.alu_telefone = form2.telefone.data
+        r.alu_celular = form2.celular.data
+        r.alu_senha = form2.senha.data
+
+        db.session.add(r)
+        db.session.commit()
+
+        return redirect(url_for('home'))
     return render_template('profile.html', form2 = form2)
 
 @app.route("/logout")
