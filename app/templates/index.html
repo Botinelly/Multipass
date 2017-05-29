@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ url_for('static',filename='images/Logo.png')}}">
+
+    <title>Multipass</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static',filename='css/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/carousel.css')}}" rel="stylesheet">
+  </head>
+  <body>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">DropDownTop</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><b><font size="5" color = "White"><img class="logosis" src="{{ url_for('static',filename='images/Logo.png')}}">Multipass</font></b></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form method="post" action="" class="navbar-form navbar-right">
+            <div class="form-group">
+              {{ form.csrf_token }}
+              {{form1.login(class = "form-control", placeholder="Digite seu usuario!",required = "required")}}
+              {% if form1.errors.login %}
+               <span class="label label-danger">Email incorreto</span>
+              {%endif%}
+            </div>
+
+
+            <div class="form-group">
+              {{form1.password(class = "form-control", placeholder="Digite sua senha!",required = "required")}}
+              {% if form1.errors.password %}
+               <span class="label label-danger">Senha incorreta</span>
+              {%endif%}
+            </div>
+
+            <button type="submit" class="btn btn-success">Entrar</button>
+
+
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+  <div class="col-xs-offset-2 col-md-2 col-sm-4 col-lg-3" align = "center">
+        <img id="logouea" src="{{ url_for('static',filename='images/UEA.jpg')}}" />
+  </div>
+
+<div class="col-xs-offset-1 col-md-offset-2 col-sm-4 col-lg-4">
+  <h2><font color = "Green">Novo no portal ?</h2></font>
+  <h4>Cadastre-se! É rápido e fácil!</h4>
+  <form action = "cadastro" method="post">
+
+    <div class = "form-group" >
+          {{form.matricula(class="form-control",placeholder="Matricula",required = "required")}}
+          {%if form.errors.matricula %}
+          <span class="label label-danger">Digite sua matrícula</span>
+          {%endif%}
+    </div>
+
+    <div class = "form-group">
+
+          {{form.nome(class="form-control",placeholder="Nome", required = "required")}}
+          {%if form.errors.nome %}
+          <span class="label label-danger">Digite seu nome</span>
+          {%endif%}
+    </div>
+
+
+    <div class = "form-group">
+
+          {{form.email(class="form-control",placeholder="Email", required = "required")}}
+          {%if form.errors.email %}
+          <span class="label label-danger">Digite seu email</span>
+          {%endif%}
+    </div>
+       <button type="submit" class="btn btn-success">Cadastrar</button>
+
+
+
+   </form>
+</div> <!-- /container -->
+
+    <!-- <footer>
+      <a href="#topo"><p class="pull-right">Voltar ao Topo</a></p>
+      <p>&copy; 2017 Ludus, Inc. &middot; <a href="#">Privacidade</a> &middot; <a href="#">Termos de Uso</a></p>
+    </footer>
+     -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{url_for('static', filename='js/jquery.min.js')}}"><\/script>')</script>
+
+    <script src= "{{ url_for('static', filename='js/bootstrap.js')}}"></script>
+
+</body>
+</html>

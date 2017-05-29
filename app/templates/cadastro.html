@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ url_for('static',filename='images/Logo.png')}}">
+
+    <title>Cadastro - Multipass</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static',filename='css/bootstrap.css')}}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/carousel.css')}}" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+          <nav class="navbar navbar-default">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index"><b><font size="5" color = "White"><img class="logosis" src="{{ url_for('static',filename='images/Logo.png')}}">Multipass</font></b></a>
+            </div>
+
+            </div><!--/.navbar-collapse -->
+        </nav>
+
+
+    <div class="container">
+      <div class="col-md-8 col-md-offset-3">
+      <h2 <b> <font color = "Green">Continue o cadastro!</h2></font>
+      <h4>&nbspÉ rápido e fácil !</h4>
+
+      <form action = "" method="post">
+
+      <div class = "form-group">
+            {{ form2.csrf_token }}
+            {{form2.matricula(class="form-control",placeholder="Matricula")}}
+            {%if form2.errors.matricula %}
+            <span class="label label-danger">Matricula inválida</span>
+            {%endif%}
+      </div>
+
+      <div class = "form-group">
+
+            {{form2.nome(class="form-control",placeholder="Nome")}}
+            {%if form2.errors.nome %}
+            <span class="label label-danger">Nome inválido</span>
+            {%endif%}
+      </div>
+
+      <div class = "form-group">
+            {{form2.endereco(class="form-control", placeholder="Endereço")}}
+      	 {%if form2.errors.endereco%}
+            <span class="label label-danger">Endereco inválido</span>
+            {%endif%}
+      </div>
+
+      <div class = "form-group">
+            {{form2.bairro(class="form-control",placeholder="Bairro")}}
+            {%if form2.errors.bairro%}
+            <span class="label label-danger">Bairro inválido</span>
+            {%endif%}
+      </div>
+
+      <div class = "form-group">
+
+            {{form2.cidade(class="form-control",placeholder="Cidade")}}
+            {%if form2.errors.cidade%}
+            <span class="label label-danger">Cidade inválida</span>
+            {%endif%}
+      </div>
+
+      <div class = "form-group">
+
+               {{form2.UF(class="form-control",placeholder="UF")}}
+               {%if form2.errors.UF%}
+               <span class="label label-danger">UF inválido</span>
+               {%endif%}
+      </div>
+
+
+      <div class = "form-group">
+
+            {{form2.CEP(class="form-control",placeholder="Cep")}}
+            {%if form2.errors.CEP%}
+            <span class="label label-danger">CEP inválido</span>
+            {%endif%}
+      </div>
+
+      <div class = "form-group" required focus>
+
+            {{form2.email(class="form-control",placeholder="Email")}}
+            {%if form2.errors.email%}
+            <span class="label label-danger">Email inválido</span>
+            {%endif%}
+      </div>
+
+      <div class = "form-group">
+
+           {{form2.telefone(class="form-control",placeholder="Telefone")}}
+           {%if form2.errors.telefone%}
+           <span class="label label-danger">Telefone inválido</span>
+           {%endif%}
+      </div>
+
+      <div class = "form-group">
+
+            {{form2.celular(class="form-control",placeholder="Celular")}}
+            {%if form2.errors.celular%}
+            <span class="label label-danger">Celular inválido</span>
+            {%endif%}
+      </div>
+
+      <div class = "form-group">
+
+            {{form2.senha(class="form-control",placeholder="Senha")}}
+            {%if form2.errors.senha%}
+                <span class="label label-danger">Senha inválida</span>
+            {%endif%}
+         </div>
+         <button type="submit" class="btn btn-success">Cadastrar</button><!--<div class = "checkbox">-->
+    </div> <!-- /container -->
+
+    <!-- <footer>
+      <a href="#topo"><p class="pull-right">Voltar ao Topo</a></p>
+      <p>&copy; 2017 Ludus, Inc. &middot; <a href="#">Privacidade</a> &middot; <a href="#">Termos de Uso</a></p>
+    </footer> -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+  </body>
+</html>

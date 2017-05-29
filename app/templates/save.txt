@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>{%block title %}Multipass{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+
+  <body>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+      <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><b><font size = "10" color = "Green">Multipass</font></b></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form method="post" action="" class="navbar-form navbar-right">
+            <div class="form-group">
+              {{ form.csrf_token }}
+              {{form1.login(class = "form-control", placeholder="Digite seu usuario!")}}
+              {% if form1.errors.login %}
+               <span class="label label-danger">Email incorreto</span>
+              {%endif%}
+            </div>
+
+
+            <div class="form-group">
+              {{form1.password(class = "form-control", placeholder="Digite sua senha!")}}
+              {% if form1.errors.password %}
+               <span class="label label-danger">Senha incorreta</span>
+              {%endif%}
+            </div>
+
+            <button type="submit" class="btn btn-success">Entrar</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+<div class="col-md-3 col-md-offset-8">
+  <h2 <b> <font color = "Green">Criar uma nova conta!</h2></font>
+  <h4>&nbspBem vindo ao Multipass!</h4>
+  <form action = "" method="post">
+
+  <div class = "form-group" >
+        {{form.matricula(class="form-control",placeholder="Matricula")}}
+        {%if form.errors.matricula%}
+        <span class="label label-danger">Digite sua matrícula</span>
+        {%endif%}
+  </div>
+
+  <div class = "form-group">
+
+        {{form.nome(class="form-control",placeholder="Nome")}}
+        {%if form.errors.nome%}
+        <span class="label label-danger">Digite seu nome</span>
+        {%endif%}
+  </div>
+
+  <div class = "form-group">
+        {{form.endereco(class="form-control", placeholder="Endereço")}}
+      {%if form.errors.endereco%}
+        <span class="label label-danger">Digite seu endereço</span>
+      {%endif%}
+  </div>
+
+  <div class = "form-group">
+        {{form.bairro(class="form-control",placeholder="Bairro")}}
+        {%if form.errors.bairro%}
+        <span class="label label-danger">Digite seu bairro</span>
+        {%endif%}
+  </div>
+
+  <div class = "form-group">
+
+        {{form.cidade(class="form-control",placeholder="Cidade")}}
+        {%if form.errors.cidade%}
+        <span class="label label-danger">Digite sua cidade</span>
+        {%endif%}
+  </div>
+
+  <div class = "form-group">
+
+           {{form.UF(class="form-control",placeholder="UF")}}
+           {%if form.errors.UF%}
+           <span class="label label-danger">Digite sua UF</span>
+           {%endif%}
+  </div>
+
+
+  <div class = "form-group">
+
+        {{form.CEP(class="form-control",placeholder="Cep")}}
+        {%if form.errors.CEP%}
+        <span class="label label-danger">Digite seu CEP</span>
+        {%endif%}
+  </div>
+
+  <div class = "form-group">
+
+        {{form.email(class="form-control",placeholder="Email")}}
+        {%if form.errors.email%}
+        <span class="label label-danger">Digite seu email</span>
+        {%endif%}
+  </div>
+
+  <div class = "form-group">
+
+       {{form.telefone(class="form-control",placeholder="Telefone")}}
+       {%if form.errors.telefone%}
+       <span class="label label-danger">Digite seu telefone</span>
+       {%endif%}
+  </div>
+
+  <div class = "form-group">
+
+        {{form.celular(class="form-control",placeholder="Celular")}}
+        {%if form.errors.celular%}
+        <span class="label label-danger">Digite seu celular</span>
+        {%endif%}
+  </div>
+
+  <div class = "form-group">
+
+        {{form.senha(class="form-control",placeholder="Senha")}}
+        {%if form.errors.senha%}
+        <span class="label label-danger">Digite sua senha</span>
+        {%endif%}
+     </div>
+     <button type="submit" class="btn btn-success">Cadastrar</button><!--<div class = "checkbox">-->
+
+
+      <footer>
+      <!--  <p>&copy; 2016 Company, Inc.</p> -->
+      </footer>
+    </div> <!-- /container -->
+
+
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <script src= "{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+  </body>
+	<!-- <label>{{form.remember_me}} Remember me</label> -->
+</form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+      <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><b><font size = "10" color = "White">Multipass</font></b></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form method="post" action="" class="navbar-form navbar-right">
+            <div class="form-group">
+              {{ form.csrf_token }}
+              {{form1.login(class = "form-control", placeholder="Digite seu usuario!",required = "required")}}
+              {% if form1.errors.login %}
+               <span class="label label-danger">Email incorreto</span>
+              {%endif%}
+            </div>
+
+
+            <div class="form-group">
+              {{form1.password(class = "form-control", placeholder="Digite sua senha!",required = "required")}}
+              {% if form1.errors.password %}
+               <span class="label label-danger">Senha incorreta</span>
+              {%endif%}
+            </div>
+
+            <button type="submit" class="btn btn-success">Entrar</button>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+
+
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
