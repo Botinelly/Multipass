@@ -1,17 +1,23 @@
-from app import app, db,lm
-from flask import render_template, flash, redirect, url_for
+from app import *
+from flask import render_template, flash, request, redirect, url_for
 from app.models.forms import *
 from app.models.tables import User
 from flask_login import login_user, logout_user, login_required
+from flask import jsonify
+from werkzeug.utils import secure_filename
 
 db.create_all()
+
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @lm.user_loader
 def load_user(alu_matricula):
     return User.query.filter_by(alu_matricula=alu_matricula).first()
 
 @app.route("/index", methods=["GET", "POST"])
-@app.route("/", methods=["GET", "POST"]) #methods=['GET']
+@app.route("/", methods=["GET", "POST"])
 def index():
     form1 = Login()
     if form1.login.data != "" and form1.password.data != ""  and form1.validate_on_submit():
@@ -20,12 +26,6 @@ def index():
         if u and p:
             login_user(u)
             return redirect(url_for("home"))
-
-    #form = Cadastro()
-    #if form.matricula.data != "" and form.nome.data != "" and form.endereco.data != "" and form.bairro.data != "" and form.cidade.data != "" and form.UF.data != "" and form.CEP.data != "" and form.email.data != "" and form.telefone.data != "" and form.celular.data != "" and form.senha.data and form.validate_on_submit():
-    #    temp = User(form.matricula.data, form.nome.data, form.endereco.data, form.bairro.data, form.cidade.data, form.UF.data,form.CEP.data, form.email.data, form.telefone.data, form.celular.data, form.senha.data)
-    #    db.session.add(temp)
-    #    db.session.commit()
     form = Temp()
     if form.nome.data != "" and form.matricula.data != "" and form.email.data != "" and form.validate_on_submit():
         return redirect(url_for("cadastro"), form = form)
@@ -86,15 +86,46 @@ def profile(matricula):
         return redirect(url_for('home'))
     return render_template('profile.html', form2 = form2)
 
+@app.route("/api_user/<matricula>", methods=["GET"])
+@login_required
+def api_user(matricula):
+    result = User.query.filter_by(alu_matricula = matricula).first()
+    return jsonify(username = result.alu_nome, matricula = result.alu_matricula, endereco = result.alu_endereco)
+
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect(url_for("index"))
 
+@app.route("/teste", methods=["GET", "POST"])
+def teste():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('teste'))
+    return '''
+    <!doctype html>
+    <title>Upload new File</title>
+    <h1>Upload new File</h1>
+    <form method=post enctype=multipart/form-data>
+      <p><input type=file name=file>
+         <input type=submit value=Upload>
+    </form>
+    '''
 
 """
-
     query
         INSERT INTO UEA_ALUNO(alu_matricula,alu_nome,alu_endereco, alu_bairro,alu_cidade, alu_UF,alu_CEP,alu_email,alu_telefone,alu_celular,alu_senha) VALUES("1234", "boty", "rua4", "RSPinto", "Manaus", "AM", "6000999", "boty@gmail.com", "852963", "98526487", "btnl");
     C

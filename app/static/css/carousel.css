@@ -137,7 +137,7 @@ footer{
 color:#fff;
 height: 50px;
 background-color: #1B6406;
-/*    display:table;*/
+    display:table;
 }
 footer p {
     padding-top:15px;
@@ -166,7 +166,6 @@ nav{
     margin-right: 15px;
     margin-left: 0px;
     transform: translateY(-5%);
-
 }
 
 #logouea{
